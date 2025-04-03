@@ -1,5 +1,5 @@
 <%provide(:title, "Sign In")%>
-<div class="login-page" style="background-image: url(<%= asset_path('logo.jpg')%>) background-repeat: no-repeat;">
+<div class="login-page" style="background-image: url(<%= asset_path('cpu_logo.png')%>) background-repeat: no-repeat;">
   <div class="login-box mt-5">
   <%= devise_error_messages! %>
     <% flash.each do |key, value| %>
@@ -8,7 +8,7 @@
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <a href="/" class="h1"><a href="/"><%= link_to image_tag("logo.png", size: "142.203x55", alt: "logo"), root_path, class: "navbar-brand"%></a></a>
+        <a href="/" class="h1"><a href="/"><%= link_to image_tag("cpu_logo.png", size: "142.203x55", alt: "logo"), root_path, class: "navbar-brand"%></a></a>
       </div>
       <div class="card-body login-card-body">
         <p class="login-box-msg">Sign in to start your session</p>

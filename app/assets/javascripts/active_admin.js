@@ -96,7 +96,7 @@ t
     }
   });
 
-  $('#header').before("<div class='headline'><div class='banner-logo'></div> <h1 class='banner-title'> HEUC Registrar Portal</h1></div>");
+  $('#header').before("<div class='headline'><div class='banner-logo'></div> <h1 class='banner-title'> CPU Business and Information Technology College Registrar Portal</h1></div>");
 
 
   $('.link').on('click', function (e) {

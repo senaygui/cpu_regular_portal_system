@@ -42,9 +42,9 @@ class StudentGradeReport < Prawn::Document
         repeat :all do
             bounding_box [bounds.left, bounds.top], :width  => bounds.width do
                 font "Times-Roman"
-            image open("app/assets/images/logo.jpg"), fit: [120, 100], position: :center
+            image open("app/assets/images/cpu_logo.png"), fit: [120, 100], position: :center
             move_down 10
-                text "HOPE ENTERPRISE UNIVERSITY COLLEGE", :align => :center, :size => 20, font_style: :bold 
+                text "CPU Business and Information Technology College", :align => :center, :size => 20, font_style: :bold 
                 move_down 10
                 text "OFFICE OF REGISTRAR", size: 14, align: :center 
                 move_down 10 
@@ -57,7 +57,7 @@ class StudentGradeReport < Prawn::Document
                 stroke_horizontal_rule
                 move_down(5)
                 text "Office OF Registrar", :size => 15, align: :center
-                text "+251902552299  PoBox.1697/1250 support@heuc.edu.et", :size => 11, align: :center
+                text "+251902552299  PoBox.1697/1250 support@cpucollege.edu.et", :size => 11, align: :center
 
             end
           end

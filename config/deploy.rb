@@ -4,7 +4,7 @@ lock "~> 3.17.3"
 
 set :application, "master"
 # set :ssh_options, { :forward_agent => true }
-set :repo_url, "https://github.com/senaygui/hope_portal_system.git"
+set :repo_url, "https://github.com/senaygui/cpu_regular_portal_system.git"
 
 
 set :git_http_username, 'senaygui' 

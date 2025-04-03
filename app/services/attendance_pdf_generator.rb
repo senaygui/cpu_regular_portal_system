@@ -37,10 +37,10 @@ class AttendancePdfGenerator
 
   def add_header(pdf)
     # Logo
-    pdf.image "app/assets/images/logo.png", at: [pdf.bounds.left + 10, pdf.bounds.top - 10]
+    pdf.image "app/assets/images/cpu_logo.png", at: [pdf.bounds.left + 10, pdf.bounds.top - 10]
 
     # Title
-    pdf.text_box "HEUC Portal Attendance Sheet", at: [0, pdf.bounds.top - 30], width: pdf.bounds.width, align: :center, size: 30
+    pdf.text_box "CPU Business and Information Technology College Portal Attendance Sheet", at: [0, pdf.bounds.top - 30], width: pdf.bounds.width, align: :center, size: 30
   end
 
   def attendance_table(pdf)

@@ -21,14 +21,14 @@ class InvoicePdfGenerator
     private
   
     def header
-      @document.image "app/assets/images/logo.jpg", width: 100, position: :center
+      @document.image "app/assets/images/cpu_logo.png", width: 100, position: :center
       @document.move_down 20
-      @document.text "HEUC", size: 28, style: :bold, align: :center
+      @document.text "CPU Business and Information Technology College", size: 28, style: :bold, align: :center
       @document.move_down 10
       @document.text "Invoice", size: 16, style: :bold, align: :center
-      @document.text "JEMO, Addis Ababa, Ethiopia", size: 12, align: :center
-      @document.text "Phone: (+251)118325993", size: 12, align: :center
-      @document.text "Email: info@heuc.edu.et", size: 12, align: :center
+      @document.text "4 killo, Addis Ababa, Ethiopia", size: 12, align: :center
+      @document.text "Phone: 093 801 0203", size: 12, align: :center
+      @document.text "Email: info@cpucollege.edu.et", size: 12, align: :center
       @document.move_down 30
     end
   

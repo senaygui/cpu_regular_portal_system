@@ -1,10 +1,10 @@
 class StudentCopy < Prawn::Document
   def initialize(students, gc_date)
-    super(page_layout: :landscape, background: open('app/assets/images/logo.png'))
+    super(page_layout: :landscape, background: open('app/assets/images/cpu_logo.png'))
     @students = students
     gc_date = Date.parse(gc_date)
     @students.each_with_index do |stud, _index|
-      text 'HEUC', inline_format: true, size: 12, align: :center, font_style: :bold
+      text 'CPU Business and Information Technology College', inline_format: true, size: 12, align: :center, font_style: :bold
       move_down 10
       text 'OFFICE OF THE REGISTRAR', inline_format: true, size: 12, align: :center, font_style: :bold
       move_down 10
@@ -86,7 +86,7 @@ class StudentCopy < Prawn::Document
     # repeat :all do
     #     bounding_box [bounds.left, bounds.top], :width  => bounds.width do
     #         font "Helvetica"
-    #     image open("app/assets/images/logo.png"), fit: [120, 100], position: :center
+    #     image open("app/assets/images/cpu_logo.png"), fit: [120, 100], position: :center
     #         stroke_horizontal_rule
     #     end
 
