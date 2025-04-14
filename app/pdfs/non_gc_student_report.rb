@@ -7,7 +7,7 @@ class NonGcStudentReport < Prawn::Document
       stroke_horizontal_rule
       move_down 12
       table [
-              ["Name of the HEI : CPU Business and Information Technology College", " ", "Location: Addis Ababa"],
+              ["Name of the HEI : Hope Enterprise University College", " ", "Location: Addis Ababa"],
               ["Program Name : #{student.program.program_name.capitalize}", "Program Level : Undrgaduate "],
               ["Modality : #{student.admission_type.capitalize}"],
               ["Admission Date: #{student.admission_date.strftime("%B,%d %Y")}"],

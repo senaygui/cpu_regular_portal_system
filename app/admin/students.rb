@@ -158,7 +158,7 @@ ActiveAdmin.register Student do
      collection_action :export_registrar_stat_csv, method: :get do
        csv_data = CSV.generate(headers: true) do |csv|
          # Header row
-         csv << ['CPU Business and Information Technology College/Office of the Registrar Statistics for Regular and Extension Students']
+         csv << ['Hope Enterprise University College/Office of the Registrar Statistics for Regular and Extension Students']
 
          # Sub-header row for columns
          header_row = ['Program Type', 'Program']
@@ -555,6 +555,9 @@ ActiveAdmin.register Student do
 
   action_item :edit, only: :show, priority: 0 do
     link_to 'Approve Student', edit_admin_student_path(student.id, page_name: 'approval')
+  end
+  action_item :edit, only: :show, priority: 0 do
+    link_to 'Student Copy', student_copy_path(student, format: :pdf)
   end
 
   show title: proc { |student|

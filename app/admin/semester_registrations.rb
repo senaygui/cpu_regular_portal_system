@@ -32,7 +32,7 @@ ActiveAdmin.register SemesterRegistration do
                                                         pdf = Prawn::Document.new
 
                                                         # Add the logo at the top center
-                                                        logo_path = Rails.root.join('app/assets/images/cpu_logo.png')
+                                                        logo_path = Rails.root.join('app/assets/images/logo.png')
                                                         pdf.image logo_path,
                                                                   at: [pdf.bounds.width / 2 - 50, pdf.cursor], width: 100
                                                         pdf.move_down 60
