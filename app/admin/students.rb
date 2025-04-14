@@ -158,7 +158,7 @@ ActiveAdmin.register Student do
      collection_action :export_registrar_stat_csv, method: :get do
        csv_data = CSV.generate(headers: true) do |csv|
          # Header row
-         csv << ['Hope Enterprise University College/Office of the Registrar Statistics for Regular and Extension Students']
+         csv << ['CPU Business and Information Technology College/Office of the Registrar Statistics for Regular and Extension Students']
 
          # Sub-header row for columns
          header_row = ['Program Type', 'Program']

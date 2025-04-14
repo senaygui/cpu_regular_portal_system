@@ -15,7 +15,7 @@ class SectionPdfGenerator
 
         # Move cursor for the text next to the logo
         pdf.bounding_box([120, pdf.cursor + 90], width: pdf.bounds.width - 120) do
-          pdf.text 'HEUC Portal Section Sheet', size: 20, style: :bold
+          pdf.text 'CPU Business and Information Technology College Portal Section Sheet', size: 20, style: :bold
           pdf.move_down 10
           pdf.text "Section Short Name: #{@section.section_short_name}", size: 12
           pdf.text "Section Full Name: #{@section.section_full_name}", size: 12
