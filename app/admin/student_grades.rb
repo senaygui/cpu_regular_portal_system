@@ -1,6 +1,6 @@
 ActiveAdmin.register StudentGrade do
     menu parent: 'Grade'
-    permit_params :dean_approval_status,:instructor_submit_status, :instructor_name, :dean_head_name, :department_approval, :department_head_name, :department_head_date_of_response, :course_registration_id,
+    permit_params :dean_approval_status, :instructor_submit_status, :instructor_name, :dean_head_name, :department_approval, :department_head_name, :department_head_date_of_response, :course_registration_id,
                   :student_id, :letter_grade, :grade_point, :assesment_total, :grade_point, :course_id, assessments_attributes: %i[id student_grade_id assessment_plan_id student_id course_id result created_by updated_by _destroy]
 
      active_admin_import validate: true,
@@ -89,13 +89,13 @@ ActiveAdmin.register StudentGrade do
       column :grade_point
       column :assesment_total
       column :department_approval do |c|
-        status_tag c.department_approval
+        status_tag c.department_approval if c.dean_approval_status.present?
       end
       column :dean_approval_status do |c|
-        status_tag c.dean_approval_status
+        status_tag c.dean_approval_status if c.dean_approval_status.present?
       end
       column :instructor_submit_status do |c|
-        status_tag c.instructor_submit_status
+        status_tag c.instructor_submit_status if c.dean_approval_status.present?
       end
       column 'Created At', sortable: true do |c|
         c.created_at.strftime('%b %d, %Y')
