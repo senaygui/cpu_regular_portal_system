@@ -1,4 +1,4 @@
-ActiveAdmin.register Student, as: 'Graduate Students' do
+ActiveAdmin.register Student, as: 'GraduateStudent' do
   menu parent: 'Student managment'
 
   controller do
@@ -127,8 +127,11 @@ ActiveAdmin.register Student, as: 'Graduate Students' do
   # action_item :edit, only: :show, priority: 0 do
   #   link_to 'Approve Student', generate_student_copy(student.id)
   # end
-  show title: proc { |student|
-    truncate("#{student.first_name.upcase} #{student.middle_name.upcase} #{student.last_name.upcase}",
+  action_item :edit, only: :show, priority: 0 do
+    link_to 'Student Copy', student_copy_path(graduate_student, format: :pdf)
+  end
+  show title: proc { |graduate_student|
+    truncate("#{graduate_student.first_name.upcase} #{graduate_student.middle_name.upcase} #{graduate_student.last_name.upcase}",
              length: 50)
   } do
     tabs do
@@ -136,7 +139,7 @@ ActiveAdmin.register Student, as: 'Graduate Students' do
         columns do
           column do
             panel 'Student Main information' do
-              attributes_table_for student do
+              attributes_table_for graduate_student do
                 row 'photo' do |pt|
                   span image_tag(pt.photo, size: '150x150', class: 'img-corner') if pt.photo.attached?
                 end
@@ -184,7 +187,7 @@ ActiveAdmin.register Student, as: 'Graduate Students' do
           end
           column do
             panel 'Basic information' do
-              attributes_table_for student do
+              attributes_table_for graduate_student do
                 row :email
                 row :gender
                 row :date_of_birth, sortable: true do |c|
@@ -198,7 +201,7 @@ ActiveAdmin.register Student, as: 'Graduate Students' do
               end
             end
             panel 'Account status information' do
-              attributes_table_for student do
+              attributes_table_for graduate_student do
                 row :account_verification_status do |s|
                   status_tag s.account_verification_status
                 end
@@ -226,7 +229,7 @@ ActiveAdmin.register Student, as: 'Graduate Students' do
         columns do
           column do
             panel 'High School Information' do
-              attributes_table_for student.school_or_university_information do
+              attributes_table_for graduate_student.school_or_university_information do
                 row :last_attended_high_school
                 row :school_address
                 row :grade_10_result
@@ -238,7 +241,7 @@ ActiveAdmin.register Student, as: 'Graduate Students' do
           end
           column do
             panel 'University/College Information' do
-              attributes_table_for student.school_or_university_information do
+              attributes_table_for graduate_student.school_or_university_information do
                 row :college_or_university
                 row :phone_number
                 row :address
@@ -253,20 +256,22 @@ ActiveAdmin.register Student, as: 'Graduate Students' do
         columns do
           column do
             panel 'Highschool Transcript' do
-              if student.highschool_transcript.attached?
-                if student.highschool_transcript.variable?
+              if graduate_student.highschool_transcript.attached?
+                if graduate_student.highschool_transcript.variable?
                   div class: 'preview-card text-center' do
-                    span link_to image_tag(student.highschool_transcript, size: '200x270'),
-                                 student.highschool_transcript
+                    span link_to image_tag(graduate_student.highschool_transcript, size: '200x270'),
+                                 graduate_student.highschool_transcript
                   end
-                elsif student.highschool_transcript.previewable?
+                elsif graduate_student.highschool_transcript.previewable?
                   div class: 'preview-card text-center' do
-                    span link_to 'view document', rails_blob_path(student.highschool_transcript, disposition: 'preview')
+                    span link_to 'view document',
+                                 rails_blob_path(graduate_student.highschool_transcript, disposition: 'preview')
                     # span link_to image_tag(student.highschool_transcript.preview(resize: '200x200')), student.highschool_transcript
                   end
                 else
                   # span link_to "view document", student.highschool_transcript.service_url
-                  span link_to 'view document', rails_blob_path(student.highschool_transcript, disposition: 'preview')
+                  span link_to 'view document',
+                               rails_blob_path(graduate_student.highschool_transcript, disposition: 'preview')
                 end
               else
                 h3 class: 'text-center no-recent-data' do
@@ -275,18 +280,21 @@ ActiveAdmin.register Student, as: 'Graduate Students' do
               end
             end
             panel 'TVET/Diploma Certificate' do
-              if student.diploma_certificate.attached?
-                if student.diploma_certificate.variable?
+              if graduate_student.diploma_certificate.attached?
+                if graduate_student.diploma_certificate.variable?
                   div class: 'preview-card text-center' do
-                    span link_to image_tag(student.diploma_certificate, size: '200x270'), student.diploma_certificate
+                    span link_to image_tag(graduate_student.diploma_certificate, size: '200x270'),
+                                 graduate_student.diploma_certificate
                   end
-                elsif student.diploma_certificate.previewable?
+                elsif graduate_student.diploma_certificate.previewable?
                   div class: 'preview-card text-center' do
-                    span link_to 'view document', rails_blob_path(student.diploma_certificate, disposition: 'preview')
+                    span link_to 'view document',
+                                 rails_blob_path(graduate_student.diploma_certificate, disposition: 'preview')
                     # span link_to image_tag(student.diploma_certificate.preview(resize: '200x200')), student.diploma_certificate
                   end
                 else
-                  span link_to 'view document', rails_blob_path(student.diploma_certificate, disposition: 'preview')
+                  span link_to 'view document',
+                               rails_blob_path(graduate_student.diploma_certificate, disposition: 'preview')
                 end
               else
                 h3 class: 'text-center no-recent-data' do
@@ -297,18 +305,21 @@ ActiveAdmin.register Student, as: 'Graduate Students' do
           end
           column do
             panel 'Grade 10 Matric Certificate' do
-              if student.grade_10_matric.attached?
-                if student.grade_10_matric.variable?
+              if graduate_student.grade_10_matric.attached?
+                if graduate_student.grade_10_matric.variable?
                   div class: 'preview-card text-center' do
-                    span link_to image_tag(student.grade_10_matric, size: '200x270'), student.grade_10_matric
+                    span link_to image_tag(graduate_student.grade_10_matric, size: '200x270'),
+                                 graduate_student.grade_10_matric
                   end
-                elsif student.grade_10_matric.previewable?
+                elsif graduate_student.grade_10_matric.previewable?
                   div class: 'preview-card text-center' do
-                    span link_to 'view document', rails_blob_path(student.grade_10_matric, disposition: 'preview')
+                    span link_to 'view document',
+                                 rails_blob_path(graduate_student.grade_10_matric, disposition: 'preview')
                     # span link_to image_tag(student.grade_10_matric.preview(resize: '200x200')), student.grade_10_matric
                   end
                 else
-                  span link_to 'view document', rails_blob_path(student.grade_10_matric, disposition: 'preview')
+                  span link_to 'view document',
+                               rails_blob_path(graduate_student.grade_10_matric, disposition: 'preview')
                 end
               else
                 h3 class: 'text-center no-recent-data' do
@@ -317,18 +328,18 @@ ActiveAdmin.register Student, as: 'Graduate Students' do
               end
             end
             panel 'Certificate Of Competency(COC)' do
-              if student.coc.attached?
-                if student.coc.variable?
+              if graduate_student.coc.attached?
+                if graduate_student.coc.variable?
                   div class: 'preview-card text-center' do
-                    span link_to image_tag(student.coc, size: '200x270'), student.coc
+                    span link_to image_tag(graduate_student.coc, size: '200x270'), graduate_student.coc
                   end
-                elsif student.coc.previewable?
+                elsif graduate_student.coc.previewable?
                   div class: 'preview-card text-center' do
-                    span link_to 'view document', rails_blob_path(student.coc, disposition: 'preview')
+                    span link_to 'view document', rails_blob_path(graduate_student.coc, disposition: 'preview')
                     # span link_to image_tag(student.coc.preview(resize: '200x200')), student.coc
                   end
                 else
-                  span link_to 'view document', rails_blob_path(student.coc, disposition: 'preview')
+                  span link_to 'view document', rails_blob_path(graduate_student.coc, disposition: 'preview')
                 end
               else
                 h3 class: 'text-center no-recent-data' do
@@ -339,18 +350,21 @@ ActiveAdmin.register Student, as: 'Graduate Students' do
           end
           column do
             panel 'Grade 12 Matric Certificate' do
-              if student.grade_12_matric.attached?
-                if student.grade_12_matric.variable?
+              if graduate_student.grade_12_matric.attached?
+                if graduate_student.grade_12_matric.variable?
                   div class: 'preview-card text-center' do
-                    span link_to image_tag(student.grade_12_matric, size: '200x270'), student.grade_12_matric
+                    span link_to image_tag(graduate_student.grade_12_matric, size: '200x270'),
+                                 graduate_student.grade_12_matric
                   end
-                elsif student.grade_12_matric.previewable?
+                elsif graduate_student.grade_12_matric.previewable?
                   div class: 'preview-card text-center' do
-                    span link_to 'view document', rails_blob_path(student.grade_12_matric, disposition: 'preview')
+                    span link_to 'view document',
+                                 rails_blob_path(graduate_student.grade_12_matric, disposition: 'preview')
                     # span link_to image_tag(student.grade_12_matric.preview(resize: '200x200')), student.grade_12_matric
                   end
                 else
-                  span link_to 'view document', rails_blob_path(student.grade_12_matric, disposition: 'preview')
+                  span link_to 'view document',
+                               rails_blob_path(graduate_student.grade_12_matric, disposition: 'preview')
                 end
               else
                 h3 class: 'text-center no-recent-data' do
@@ -359,21 +373,21 @@ ActiveAdmin.register Student, as: 'Graduate Students' do
               end
             end
             panel 'Undergraduate Degree Transcript' do
-              if student.undergraduate_transcript.attached?
-                if student.undergraduate_transcript.variable?
+              if graduate_student.undergraduate_transcript.attached?
+                if graduate_student.undergraduate_transcript.variable?
                   div class: 'preview-card text-center' do
-                    span link_to image_tag(student.undergraduate_transcript, size: '200x270'),
-                                 student.undergraduate_transcript
+                    span link_to image_tag(graduate_student.undergraduate_transcript, size: '200x270'),
+                                 graduate_student.undergraduate_transcript
                   end
-                elsif student.undergraduate_transcript.previewable?
+                elsif graduate_student.undergraduate_transcript.previewable?
                   div class: 'preview-card text-center' do
                     span link_to 'view document',
-                                 rails_blob_path(student.undergraduate_transcript, disposition: 'preview')
+                                 rails_blob_path(graduate_student.undergraduate_transcript, disposition: 'preview')
                     # span link_to image_tag(student.undergraduate_transcript.preview(resize: '200x200')), student.undergraduate_transcript
                   end
                 else
                   span link_to 'view document',
-                               rails_blob_path(student.undergraduate_transcript, disposition: 'preview')
+                               rails_blob_path(graduate_student.undergraduate_transcript, disposition: 'preview')
                 end
               else
                 h3 class: 'text-center no-recent-data' do
@@ -384,23 +398,26 @@ ActiveAdmin.register Student, as: 'Graduate Students' do
           end
           column do
             panel 'Undergraduate Degree Certificate' do
-              if student.degree_certificate.attached?
-                if student.degree_certificate.variable?
+              if graduate_student.degree_certificate.attached?
+                if graduate_student.degree_certificate.variable?
                   div class: 'preview-card text-center' do
-                    span link_to image_tag(student.degree_certificate, size: '200x270'), student.degree_certificate
+                    span link_to image_tag(graduate_student.degree_certificate, size: '200x270'),
+                                 graduate_student.degree_certificate
                   end
-                elsif student.degree_certificate.previewable?
+                elsif graduate_student.degree_certificate.previewable?
                   div class: 'preview-card text-center' do
-                    span link_to 'view document', rails_blob_path(student.degree_certificate, disposition: 'preview')
+                    span link_to 'view document',
+                                 rails_blob_path(graduate_student.degree_certificate, disposition: 'preview')
                     # span link_to image_tag(student.degree_certificate.preview(resize: '200x200')), student.degree_certificate
                   end
                 else
-                  span link_to 'view document', rails_blob_path(student.degree_certificate, disposition: 'preview')
+                  span link_to 'view document',
+                               rails_blob_path(graduate_student.degree_certificate, disposition: 'preview')
                 end
 
                 div class: 'text-center' do
                   span 'Temporary Degree Status'
-                  status_tag student.tempo_status
+                  status_tag graduate_student.tempo_status
                 end
               else
                 h3 class: 'text-center no-recent-data' do
@@ -415,7 +432,7 @@ ActiveAdmin.register Student, as: 'Graduate Students' do
         columns do
           column do
             panel 'Student Address' do
-              attributes_table_for student.student_address do
+              attributes_table_for graduate_student.student_address do
                 row :country
                 row :city
                 row :region
@@ -432,7 +449,7 @@ ActiveAdmin.register Student, as: 'Graduate Students' do
           end
           column do
             panel 'Student Emergency Contact information' do
-              attributes_table_for student.emergency_contact do
+              attributes_table_for graduate_student.emergency_contact do
                 row :full_name
                 row :relationship
                 row :cell_phone
@@ -449,7 +466,7 @@ ActiveAdmin.register Student, as: 'Graduate Students' do
       end
       tab 'Student Course' do
         panel 'Course list' do
-          table_for student.student_courses.order('year ASC, semester ASC') do
+          table_for graduate_student.student_courses.order('year ASC, semester ASC') do
             ## TODO: wordwrap titles and long texts
             column :course_title
             column :course_code
@@ -464,7 +481,7 @@ ActiveAdmin.register Student, as: 'Graduate Students' do
       end
       tab 'Grade Report' do
         panel 'Grade Report', html: { loading: 'lazy' } do
-          table_for student.grade_reports.order('year ASC, semester ASC') do
+          table_for graduate_student.grade_reports.order('year ASC, semester ASC') do
             column 'Academic Year', sortable: true do |n|
               link_to n.academic_calendar.calender_year_in_gc, admin_academic_calendar_path(n.academic_calendar)
             end
