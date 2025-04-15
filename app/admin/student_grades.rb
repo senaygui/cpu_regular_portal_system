@@ -28,7 +28,7 @@ ActiveAdmin.register StudentGrade do
     #   link_to 'Generate Grade', generate_grade_admin_student_grade_path(student_grade.id), method: :put, data: { confirm: 'Are you sure?' }
     # end
 
-    batch_action 'Generate Grade for', method: :put, if: proc {
+    batch_action 'submit Grade for', method: :put, if: proc {
       current_admin_user.role == 'instructor' || current_admin_user.role == 'admin'
     }, confirm: 'Are you sure?' do |ids|
       StudentGrade.find(ids).each do |student_grade|
@@ -91,9 +91,9 @@ ActiveAdmin.register StudentGrade do
       column :department_approval do |c|
         status_tag c.department_approval if c.department_approval.present?
       end
-      column :dean_approval_status do |c|
-        status_tag c.dean_approval_status if c.dean_approval_status.present?
-      end
+      # column :dean_approval_status do |c|
+      #   status_tag c.dean_approval_status if c.dean_approval_status.present?
+      # end
       column :instructor_submit_status do |c|
         status_tag c.instructor_submit_status if c.instructor_submit_status.present?
       end
