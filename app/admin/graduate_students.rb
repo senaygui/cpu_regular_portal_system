@@ -6,6 +6,10 @@ ActiveAdmin.register Student, as: 'Graduate Students' do
       update_method = attributes.first[:password].present? ? :update : :update_without_password
       object.send(update_method, *attributes)
     end
+
+    def scoped_collection
+      super.where(graduation_status: 'approved') # adjust 'status' if the column is named differently
+    end
   end
 
   def scoped_collection
