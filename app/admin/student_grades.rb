@@ -89,13 +89,13 @@ ActiveAdmin.register StudentGrade do
       column :grade_point
       column :assesment_total
       column :department_approval do |c|
-        status_tag c.department_approval if c.department_approval.present?
+        status_tag c.department_approval
       end
       column :dean_approval_status do |c|
-        status_tag c.dean_approval_status if c.dean_approval_status.present?
+        status_tag c.dean_approval_status
       end
       column :instructor_submit_status do |c|
-        status_tag c.instructor_submit_status if c.instructor_submit_status.present?
+        status_tag c.instructor_submit_status
       end
       column 'Created At', sortable: true do |c|
         c.created_at.strftime('%b %d, %Y')
