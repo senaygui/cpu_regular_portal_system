@@ -91,9 +91,9 @@ ActiveAdmin.register StudentGrade do
       column :department_approval do |c|
         status_tag c.department_approval if c.department_approval.present?
       end
-      # column :dean_approval_status do |c|
-      #   status_tag c.dean_approval_status if c.dean_approval_status.present?
-      # end
+      column :dean_approval_status do |c|
+        status_tag c.dean_approval_status if c.dean_approval_status.present?
+      end
       column :instructor_submit_status do |c|
         status_tag c.instructor_submit_status if c.instructor_submit_status.present?
       end
